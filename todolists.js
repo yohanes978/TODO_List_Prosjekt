@@ -3,9 +3,9 @@ const db = require('./todo.js');
 const router = express.Router();
 
 // endpoints ----------------------------
-router.get("/todolists", async function(req, res, next) {
+router.get("/grayrubiousmagyarosaurus", async function(req, res, next) {
 
-	let sql= "SELECT * FROM todolists";
+	let sql= "SELECT * FROM grayrubiousmagyarosaurus";
 	
 	try{
 	//let result = await pool.query(sql);
@@ -18,11 +18,11 @@ router.get("/todolists", async function(req, res, next) {
 	}
 });
 
-router.post("/todolists", async function(req, res, next) {	
+router.post("/grayrubiousmagyarosaurus", async function(req, res, next) {	
 	let updata = req.body;
 	let userid = 1; //must be changes when we implement users
 
-	let sql = 'INSERT INTO todolists (id, date, heading, blogtext, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning*';
+	let sql = 'INSERT INTO grayrubiousmagyarosaurus (id, date, heading, blogtext, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning*';
 	let values = [updata.heading, updata.blogtext, userid];
 
 	try{
@@ -40,11 +40,11 @@ router.post("/todolists", async function(req, res, next) {
 	}
 });
 
-router.delete("/todolists", async function(req, res, next) {
+router.delete("/grayrubiousmagyarosaurus", async function(req, res, next) {
 	
 	let updata= req.body;
 
-	//let sql = "DELETE FROM todolists WHERE id = $1 RETURNING *";
+	//let sql = "DELETE FROM grayrubiousmagyarosaurus WHERE id = $1 RETURNING *";
 	//let values = [updata.id];
 
 	try{

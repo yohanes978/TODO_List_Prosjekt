@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,23 +10,23 @@
     <!----------- HTML-elements -------------->
     <input id="inpHeading" type="text"/><br>
     <textarea id="inpTodoList" cols="80" rows="10"></textarea><br>
-    <button id="btnAdd">Add to list </button><br>
+    <button id="btnCreate">Create post</button><br>
     <h3 id="txtResult">Result...</h3>
         
     <!------------- JavaScript --------------->
     <script>
 
         let inpHeading= document.getElementById('inpHeading');
-        let inpTodoList= document.getElementById('inpTodoList');
-        let btnAdd= document.getElementById('btnAdd');
+        let inpBlogtext= document.getElementById('inpBlogtext');
+        let btnCreate= document.getElementById('btnCreate');
         let txtResult= document.getElementById('txtResult');
 
-        btnAdd.addEventListener('click', async function(evt) {
-            let url = "/todolists";
+        btnCreate.addEventListener('click', async function(evt) {
+            let url = "/grayrubiousmagyarosaurus";
 
             let updata = {
                 heading: inpHeading.value,
-                blogtext: inpTodoList.value
+                blogtext: inpBlogtext.value
             }
 
             let cfg = {

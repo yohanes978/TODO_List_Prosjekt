@@ -13,11 +13,22 @@
     <a href="todolist.html"> To do list</a>
     <a href="todolistcreate.html">Create a new list</a>
 
-    <div id = "container"></div>
+    <div id = "container1" class= "cont1">
+        <input type="text" place holder="write over here">
+        <span onclick= "newElement()" class= "addbtn"> Add</span>
+        
+    </div>
 
             
     <!------------- JavaScript --------------->
-
+    <script>
+      const myList=documentgetById('cont1'); 
+        let i;
+        for (i=0; i < myList.length; i++) {
+            let span = document.creatElemenet('SPAN');
+            
+        }
+    </script>
  
 
     <!---------------- CSS ------------------->

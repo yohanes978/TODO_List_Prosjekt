@@ -10,18 +10,18 @@ server.use(express.static("public"));
 server.use(express.json());
 
 // endpoints ----------------------------
-server.get("/", function(req, res, next) {
+server.get("/grayrubiousmagyarosaurus", function(req, res, next) {
 	res.status(200).send("Hello from GET").end();
 });
 
-server.post("/", function(req, res, next) {	
+server.post("/grayrubiousmagyarosaurus", function(req, res, next) {	
 	console.log(req.body.country);
 	res.status(200).send("Hello from POST").end();
 });
 
 
 
-server.delete("/", function(req, res, next) {
+server.delete("/grayrubiousmagyarosaurus", function(req, res, next) {
 	res.status(200).send("Hello from DELETE").end();
 });
 

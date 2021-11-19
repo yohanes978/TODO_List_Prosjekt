@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('./todo.js');
+const todo = require('./todo.js');
 const router = express.Router();
 
 // endpoints ----------------------------
@@ -9,7 +9,7 @@ router.get("/grayrubiousmagyarosaurus", async function(req, res, next) {
 	
 	try{
 	//let result = await pool.query(sql);
-	let data = await db.getAllBlogPosts();
+	let data = await todo.getAllTodoLists();
 	res.status(200).json(data.rows).end();
 	}
 	catch(err){
@@ -22,13 +22,14 @@ router.post("/grayrubiousmagyarosaurus", async function(req, res, next) {
 	let updata = req.body;
 	let userid = 1; //must be changes when we implement users
 
-	let sql = 'INSERT INTO grayrubiousmagyarosaurus (id, date, heading, blogtext, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning*';
-	let values = [updata.heading, updata.blogtext, userid];
+	let sql = 'INSERT INTO grayrubiousmagyarosaurus (id, date, heading, inpTodoList, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning*';
+	let values = [updata.heading, updata.inpTodoList, userid];
 
 	try{
 		//let result = await pool.query(sql, values);
-		let data = await todo.writeTodoList(updata.heading, updata.blogtext, userid);
+		let data = await todo.writeTodoList(updata.heading, updata.inpTodoList, userid);
 		if (data.rows.length > 0){
+            console.log("test")
 			res.status(200).json({msg: "The todolist was created succesfully"}).end();
 		} else {
 			throw "The todolist couldn´t be created";
@@ -49,7 +50,7 @@ router.delete("/grayrubiousmagyarosaurus", async function(req, res, next) {
 
 	try{
 		//let result = await pool.query(sql, values);
-		//let data = await db.deleteTodoList(updata.id);
+		//let data = await todo.deleteTodoList(updata.id);
 
 		if(data.rows.length > 0){
 			res.status(200).json({msg: "The todolist was deleted successfully"}).end();

@@ -20,9 +20,9 @@ dbMethods.getAllTodoLists = function(){
 }
 
 //--------------------------------------
-dbMethods.createTodoList = function(heading, blogtext, userid) {
-    let sql = 'INSERT INTO grayrubiousmagyarosaurus (id, date, heading, blogtext, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning*';
-	let values = [updata.heading, updata.blogtext, userid];
+dbMethods.createTodoList = function(heading, inpTodoList, userid) {
+    let sql = 'INSERT INTO grayrubiousmagyarosaurus (id, date, heading, inpTodoList, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning*';
+	let values = [updata.heading, updata.inpTodoList, userid];
     return pool.query(sql, values); //return the promise
 
 }

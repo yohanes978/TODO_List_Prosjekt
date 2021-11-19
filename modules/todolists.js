@@ -22,8 +22,7 @@ router.post("/grayrubiousmagyarosaurus", async function(req, res, next) {
 	let updata = req.body;
 	let userid = 1; //must be changes when we implement users
 
-	let sql = 'INSERT INTO grayrubiousmagyarosaurus (id, date, heading, chores, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning*';
-	let values = [updata.heading, updata.chores, userid];
+	
 
 	try{
 		//let result = await pool.query(sql, values);

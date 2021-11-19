@@ -20,15 +20,15 @@ dbMethods.getAllTodoLists = function(){
 }
 
 //--------------------------------------
-dbMethods.createTodoList = function(heading, inpTodoList, userid) {
-    let sql = 'INSERT INTO grayrubiousmagyarosaurus (id, date, heading, inpTodoList, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning*';
-	let values = [updata.heading, updata.inpTodoList, userid];
+dbMethods.createTodoList = function(listName, listItems, userid) {
+    let sql = 'INSERT INTO grayrubiousmagyarosaurus (id, date, list-name, list-items, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning*';
+	let values = [listName, listItems, userid];
     return pool.query(sql, values); //return the promise
 
 }
 
 //-------------------------------------
-dbMethods.deleteBlogPost = function(id){
+dbMethods.deleteChore = function(id){
     let sql = "DELETE FROM grayrubiousmagyarosaurus WHERE id = $1 RETURNING *";
     let values = [id];
     return pool.query(sql, values); //return the promise

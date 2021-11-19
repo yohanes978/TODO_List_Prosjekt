@@ -1,5 +1,5 @@
 const express = require('express');
-const todo = require('./todo.js');
+const db = require('./databaseHandler.js');
 const router = express.Router();
 
 // endpoints ----------------------------

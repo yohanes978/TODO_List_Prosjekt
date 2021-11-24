@@ -14,14 +14,14 @@ let dbMethods = {}; //create empty object
 //----------------------------------------
 
 dbMethods.getAllTodoLists = function(){
-    let sql = "SELECT * FROM TODO-liste";
+    let sql = "SELECT * FROM TODOliste";
     return pool.query(sql); //return the promise
 
 }
 
 //--------------------------------------
 dbMethods.createTodoList = function(listName, listItems, userid) {
-    let sql = 'INSERT INTO TODO-liste (id, date, list-name, list-items, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning*';
+    let sql = 'INSERT INTO todoliste (id, date, listname, listitems, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning*';
 	let values = [listName, listItems, userid];
     return pool.query(sql, values); //return the promise
 
@@ -29,7 +29,7 @@ dbMethods.createTodoList = function(listName, listItems, userid) {
 
 //-------------------------------------
 dbMethods.deleteChore = function(id){
-    let sql = "DELETE FROM TODO-liste WHERE id = $1 RETURNING *";
+    let sql = "DELETE FROM TODOliste WHERE id = $1 RETURNING *";
     let values = [id];
     return pool.query(sql, values); //return the promise
     

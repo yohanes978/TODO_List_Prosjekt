@@ -14,7 +14,7 @@ let dbMethods = {}; //create empty object
 //----------------------------------------
 
 dbMethods.getAllTodoLists = function(){
-    let sql = "SELECT * FROM TODOliste";
+    let sql = "SELECT * FROM todoliste";
     return pool.query(sql); //return the promise
 
 }
@@ -28,8 +28,8 @@ dbMethods.createTodoList = function(listName, listItems, userid) {
 }
 
 //-------------------------------------
-dbMethods.deleteChore = function(id){
-    let sql = "DELETE FROM TODOliste WHERE id = $1 RETURNING *";
+dbMethods.deleteTodoList = function(id){
+    let sql = "DELETE FROM todoliste WHERE id = $1 RETURNING *";
     let values = [id];
     return pool.query(sql, values); //return the promise
     

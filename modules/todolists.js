@@ -51,7 +51,7 @@ router.delete("/grayrubiousmagyarosaurus", async function(req, res, next) {
 
 	try{
 		//let result = await pool.query(sql, values);
-		//let data = await db.deleteTodoList(updata.id);
+		let data = await db.deleteTodoList(updata.id);
 
 		if(data.rows.length > 0){
 			res.status(200).json({msg: "The todolist was deleted successfully"}).end();

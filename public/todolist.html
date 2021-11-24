@@ -19,6 +19,7 @@
         try {
           let response = await fetch(url);
           let data = await response.json();
+          console.log(data)
 
           if (response.status != 200) {
             throw data.error;
@@ -27,11 +28,11 @@
           container.innerHTML = "";
 
           for (let value of data) {
-            let date = new Date(value.date);
-
-            let html = "<h2>" + value.heading + "</h2>";
+            let date = new Date(value.date)
+            let html = "<h2>" + value.listname + "</h2>";
             html += "<p>" + date.toLocaleDateString() + "</p>";
-            html += "<p>" + value.listText + "</p><hr>";
+            html += "<p>" + value.listitems + "</p>";
+            html += "<p>" + value.id + "</p><hr>"
 
             let div = document.createElement("div");
             div.innerHTML = html;
@@ -42,6 +43,7 @@
 
             delbtn.addEventListener("click", function (evt) {
               deleteListElement(value.id);
+
             });
             div.insertBefore(delbtn, div.lastElementChild);
           }
@@ -53,12 +55,12 @@
         let url = "/grayrubiousmagyarosaurus";
 
         let updata = {
-          id: todolistid,
+          id: todolistid
         };
         let cfg = {
           method: "DELETE",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify(updata),
+          body: JSON.stringify(updata)
         };
         try {
           let response = await fetch(url, cfg);

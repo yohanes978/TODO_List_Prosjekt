@@ -12,8 +12,24 @@
     <button id="btnAdd">Add to list</button><br />
     <h3 id="txtResult">Result...</h3>
 
+    <br>
+    
+    <input id="testName" type="text">
+    <input id="testContent" type="text">
+    <button id="btnAddTest">add item</button>
+    <button id="btnFinishTest">finish list</button>
+    <div id="container"></div>
+
     <!------------- JavaScript --------------->
+
+
     <script>
+      let testName = document.getElementById("testName");
+      let testContent = document.getElementById("testContent");
+      let btnAddTest = document.getElementById("btnAddTest");
+      let btnFinishTest = document.getElementById("btnFinishTest")
+      let container = document.getElementById("container")
+      ////////////////////////////////
       let listName = document.getElementById("listName");
       let listItems = document.getElementById("listItems");
       let btnAdd = document.getElementById("btnAdd");
@@ -27,6 +43,46 @@
           listItems: listItems.value,
         };
 
+        let cfg = {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(updata),
+        };
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
+          console.log(data);
+
+          if (response.status != 200) {
+            throw data.err;
+          }
+          txtResult.innerHTML = data.msg;
+        } catch (err) {
+          console.log(err);
+          txtResult.innerHTML =
+            "Something went wrong - check the console window";
+        }
+      });
+
+      btnAddTest.addEventListener("click", function(){
+        let listItem = document.createElement("div")
+        listItem.innerHTML = testContent.value;
+        container.appendChild(listItem)
+
+      })
+      btnFinishTest.addEventListener("click", async function(){
+        let url = "/grayrubiousmagyarosaurus";
+        let items = {};
+        let info = container.childNodes;
+        let increment = 0;
+        info.forEach(function(item){
+          items[increment] = item.innerHTML;
+          increment++
+        })
+        let updata = {
+          heading: testName.value,
+          listItems: JSON.stringify(items)
+        };
         let cfg = {
           method: "POST",
           headers: { "content-type": "application/json" },

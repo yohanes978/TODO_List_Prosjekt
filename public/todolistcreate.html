@@ -7,18 +7,18 @@
   </head>
   <body>
     <!----------- HTML-elements -------------->
+    <h3 id= "title">Name your list</h3>
     <input id="listName" type="text" /><br />
-    <textarea id="listItems" cols="80" rows="10"></textarea><br />
-    <button id="btnAdd">Add to list</button><br />
-    <h3 id="txtResult">Result...</h3>
 
     <br>
     
     <input id="testName" type="text">
     <input id="testContent" type="text">
     <button id="btnAddTest">add item</button>
-    <button id="btnFinishTest">finish list</button>
     <div id="container"></div>
+   
+    <br>
+    <button id="btnAdd">Finish list </button><br />
 
     <!------------- JavaScript --------------->
 
@@ -66,10 +66,14 @@
 
       btnAddTest.addEventListener("click", function(){
         let listItem = document.createElement("div")
+        listItem.innerHTML = testContent.value;
         let checkbox = document.createElement("input")
+        checkbox.setAttribute("type", "checkbox");
+        listItem.appendChild(checkbox);
+
         container.appendChild(listItem)
 
-      })
+      });
       btnFinishTest.addEventListener("click", async function(){
         let url = "/grayrubiousmagyarosaurus";
         let items = {};

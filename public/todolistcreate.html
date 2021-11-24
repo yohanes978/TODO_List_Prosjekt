@@ -7,14 +7,14 @@
   </head>
   <body>
     <!----------- HTML-elements -------------->
-    <h3 id= "title">Name your list</h3>
-    <input id="listName" type="text" /><br />
+    <h2 id= "title">Name your list</h2>
+    <input id="listName" type="text" class="listItem" /><br />
 
     <br>
     
     
-    <input id="listItem" type="text">
-    <button id="btnAddToList">add item</button>
+    <input id="listItem" type="text" class="listItem">
+    <button id="btnAddToList" class="btnAddToList">add item</button>
     <div id="container"></div>
    
     <br>
@@ -113,7 +113,7 @@
       }
 
       #btnFinishList {
-        background-color: #0f0e0e;
+        background-color: blue;
         color: white;
         padding: 14px 25px;
         text-align: center;
@@ -123,6 +123,20 @@
       }
       #btnFinishList:hover {
         background-color: rgb(102, 101, 101);
+      }
+      .listItem {
+        margin: 10px;
+        width: 15%;
+        padding: 10px;
+      }
+      .btnAddToList{
+        background-color: blue;
+        color: #ffff;
+        display: inline-block;
+        box-sizing: border-box;
+        border-radius: 15px; 
+        width: 100px;
+        height: 40px;
       }
     </style>
   </body>

@@ -12,30 +12,26 @@
 
     <br>
     
-    <input id="testName" type="text">
-    <input id="testContent" type="text">
-    <button id="btnAddTest">add item</button>
+    
+    <input id="listItem" type="text">
+    <button id="btnAddToList">add item</button>
     <div id="container"></div>
    
     <br>
-    <button id="btnAdd">Finish list </button><br />
+    <button id="btnFinishList">Finish list </button><br />
 
     <!------------- JavaScript --------------->
 
 
     <script>
-      let testName = document.getElementById("testName");
-      let testContent = document.getElementById("testContent");
-      let btnAddTest = document.getElementById("btnAddTest");
-      let btnFinishTest = document.getElementById("btnFinishTest")
+      let listItem = document.getElementById("listItem");
+      let btnAddToList = document.getElementById("btnAddToList");
       let container = document.getElementById("container")
-      ////////////////////////////////
       let listName = document.getElementById("listName");
-      let listItems = document.getElementById("listItems");
-      let btnAdd = document.getElementById("btnAdd");
-      let txtResult = document.getElementById("txtResult");
+      let btnFinishList = document.getElementById("btnFinishList");
+    
 
-      btnAdd.addEventListener("click", async function (evt) {
+      btnFinishList.addEventListener("click", async function (evt) {
         let url = "/grayrubiousmagyarosaurus";
 
         let updata = {
@@ -64,9 +60,9 @@
         }
       });
 
-      btnAddTest.addEventListener("click", function(){
+      btnAddToList.addEventListener("click", function(){
         let listItem = document.createElement("div")
-        listItem.innerHTML = testContent.value;
+        listItem.innerHTML = listItem.value;
         let checkbox = document.createElement("input")
         checkbox.setAttribute("type", "checkbox");
         listItem.appendChild(checkbox);
@@ -116,7 +112,7 @@
         max-height: 200px;
       }
 
-      #btnAdd {
+      #btnFinishList {
         background-color: #0f0e0e;
         color: white;
         padding: 14px 25px;
@@ -125,7 +121,7 @@
         display: inline-block;
         border-radius: 15px;
       }
-      #btnAdd:hover {
+      #btnFinishList:hover {
         background-color: rgb(102, 101, 101);
       }
     </style>

@@ -1,7 +1,7 @@
 //TODO
 
 //setup connection ---------------------
-const todo = require('./modules/todo.js'); 
+const todo = require('./modules/todolists.js'); 
 
 const pg = require('pg');
 const dbURI = "postgres://jlpjzmkfcwxgfa:da48aedd015f3dabc38773136eb7ff0745a414d95cbf7a9c607f75a12c1a090e@ec2-52-31-219-113.eu-west-1.compute.amazonaws.com:5432/dd7qf9370fk6to";

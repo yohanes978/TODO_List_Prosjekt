@@ -18,6 +18,19 @@ router.get("/todo", async function(req, res, next) {
 	}
 });
 
+router.post("/todoGetItems", async function(req, res, next){
+	let updata = req.body;
+
+
+	try{
+		let data = await db.getListItems(updata.id);
+		console.log(data)
+		res.status(200).json(data.rows).end();
+	}catch(err){
+		next(err)
+	}
+})
+
 router.post("/todo", async function(req, res, next) {	
 	let updata = req.body;
 	let userid = 1; //must be changes when we implement users
@@ -47,6 +60,26 @@ router.post("/todo", async function(req, res, next) {
 	catch(err){
 		res.status(500).json({error: err}).end;
 		next(err);
+	}
+});
+router.delete("/todoitem", async function(req, res, next) {
+	
+	let updata= req.body;
+
+
+	try{
+		let data = await db.deleteTodoListItem(updata.id);
+
+		if(data.rows.length > 0){
+			res.status(200).json({msg: "The item was deleted successfully"}).end();
+		}
+		else{
+			throw "The item couldn´t be deleted";
+		}
+	}
+	catch(err){
+		//res.status(500).json({error: err}).end();
+		next(err); //called by using next(error) inside a catchblock in anyone of the async middleware or endpoint-functions above the error-handler
 	}
 });
 

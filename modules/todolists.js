@@ -3,9 +3,9 @@ const db = require('./databaseHandler.js');
 const router = express.Router();
 
 // endpoints ----------------------------
-router.get("/grayrubiousmagyarosaurus", async function(req, res, next) {
+router.get("/todo", async function(req, res, next) {
 
-	let sql= "SELECT * FROM grayrubiousmagyarosaurus";
+	let sql= "SELECT * FROM todo";
 	
 	try{
 	//let result = await pool.query(sql);
@@ -18,7 +18,7 @@ router.get("/grayrubiousmagyarosaurus", async function(req, res, next) {
 	}
 });
 
-router.post("/grayrubiousmagyarosaurus", async function(req, res, next) {	
+router.post("/todo", async function(req, res, next) {	
 	let updata = req.body;
 	let userid = 1; //must be changes when we implement users
 
@@ -42,11 +42,11 @@ router.post("/grayrubiousmagyarosaurus", async function(req, res, next) {
 	}
 });
 
-router.delete("/grayrubiousmagyarosaurus", async function(req, res, next) {
+router.delete("/todo", async function(req, res, next) {
 	
 	let updata= req.body;
 
-	//let sql = "DELETE FROM grayrubiousmagyarosaurus WHERE id = $1 RETURNING *";
+	//let sql = "DELETE FROM todo WHERE id = $1 RETURNING *";
 	//let values = [updata.id];
 
 	try{

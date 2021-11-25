@@ -27,8 +27,16 @@ router.post("/todo", async function(req, res, next) {
 	try{
 		//let result = await pool.query(sql, values);
 		console.log(updata.listItems, updata.listName)
-		let data = await db.createTodoList(JSON.stringify(updata.listName), JSON.stringify(updata.listItems), userid.toString());
-		console.log(data)
+		let data = await db.createTodoList(JSON.stringify(updata.listName), userid.toString());
+		let items = []
+		let listItems = JSON.parse(updata.listItems);
+		console.log(Object.keys(listItems).length)
+
+		for (let i = 0; i<Object.keys(listItems).length; i++){
+			items.push(listItems[i])
+			data = await db.createListItems(userid.toString(), JSON.stringify(updata.listName), listItems[i])
+		}
+		console.log(items)
 		if (data.rows.length > 0){
             console.log("test")
 			res.status(200).json({msg: "The todolist was created succesfully"}).end();

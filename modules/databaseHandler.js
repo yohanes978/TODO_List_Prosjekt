@@ -20,11 +20,16 @@ dbMethods.getAllTodoLists = function(){
 }
 
 //--------------------------------------
-dbMethods.createTodoList = function(listName, listItems, userid) {
-    let sql = 'INSERT INTO todoliste (id, date, listname, listitems, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning*';
-	let values = [listName, listItems, userid];
+dbMethods.createTodoList = function(listName, userid) {
+    let sql = 'INSERT INTO todoliste (id, date, listname, userid) VALUES(DEFAULT, DEFAULT, $1, $2) returning*';
+	let values = [listName, userid];
     return pool.query(sql, values); //return the promise
 
+}
+dbMethods.createListItems = function(userid, listName, listItem){
+    let sql = 'INSERT INTO chores (userid, name, item, itemid) VALUES($1, $2, $3, DEFAULT)'
+    let values = [userid, listName, listItem];
+    return pool.query(sql, values);
 }
 
 //-------------------------------------

@@ -31,7 +31,7 @@
       let btnFinishList = document.getElementById("btnFinishList");
     
 
-      btnFinishList.addEventListener("click", async function (evt) {
+      /*btnFinishList.addEventListener("click", async function (evt) {
         let url = "/todo";
 
         let updata = {
@@ -58,19 +58,17 @@
           txtResult.innerHTML =
             "Something went wrong - check the console window";
         }
-      });
+      });*/
 
       btnAddToList.addEventListener("click", function(){
-        let listItem = document.createElement("div")
-        listItem.innerHTML = listItem.value;
-        let checkbox = document.createElement("input")
-        checkbox.setAttribute("type", "checkbox");
-        listItem.appendChild(checkbox);
+        let listItems = document.createElement("div")
+        listItems.innerHTML = listItem.value;
+        console.log(listItem.value)
 
-        container.appendChild(listItem)
+        container.appendChild(listItems)
 
       });
-      btnFinishTest.addEventListener("click", async function(){
+      btnFinishList.addEventListener("click", async function(){
         let url = "/todo";
         let items = {};
         let info = container.childNodes;
@@ -80,7 +78,7 @@
           increment++
         })
         let updata = {
-          heading: testName.value,
+          listName: listName.value,
           listItems: JSON.stringify(items)
         };
         let cfg = {
@@ -96,11 +94,8 @@
           if (response.status != 200) {
             throw data.err;
           }
-          txtResult.innerHTML = data.msg;
         } catch (err) {
           console.log(err);
-          txtResult.innerHTML =
-            "Something went wrong - check the console window";
         }
       });
     </script>

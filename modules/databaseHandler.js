@@ -26,14 +26,19 @@ dbMethods.createTodoList = function(listName, userid) {
     return pool.query(sql, values); //return the promise
 
 }
-dbMethods.createListItems = function(userid, listName, listItem){
-    let sql = 'INSERT INTO chores (userid, name, item, itemid) VALUES($1, $2, $3, DEFAULT)'
-    let values = [userid, listName, listItem];
+dbMethods.createListItems = async function(userid, listName, listItem){
+    let selectListId = await pool.query("SELECT id FROM todoliste WHERE userid = $1 AND listname = $2", [userid, listName]);
+    let listID = selectListId.rows[selectListId.rows.length-1].id
+    console.log(listID)
+    console.log("what")
+    let sql = 'INSERT INTO chores (listid, name, item, itemid) VALUES($1, $2, $3, DEFAULT)'
+    let values = [listID, listName, listItem];
     return pool.query(sql, values);
 }
 
 //-------------------------------------
 dbMethods.deleteTodoList = function(id){
+    pool.query("DELETE FROM chores WHERE listid = $1", [id]);
     let sql = "DELETE FROM todoliste WHERE id = $1 RETURNING *";
     let values = [id];
     return pool.query(sql, values); //return the promise

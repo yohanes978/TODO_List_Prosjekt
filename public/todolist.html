@@ -14,7 +14,7 @@
       let container = document.getElementById("container");
 
       async function writeToDoList() {
-        let url = "/grayrubiousmagyarosaurus";
+        let url = "/todo";
 
         try {
           let response = await fetch(url);
@@ -52,7 +52,7 @@
         }
       }
       async function deleteListElement(todolistid) {
-        let url = "/grayrubiousmagyarosaurus";
+        let url = "/todo";
 
         let updata = {
           id: todolistid

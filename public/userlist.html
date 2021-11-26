@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>TestClient</title>
+</head>
+<body>
+
+    <script>
+         let container = document.getElementById('container');
+        let inpHeading = document.getElementById('inpHeading');
+        let inpBlogtext = document.getElementById('inpBlogtext');
+        let btnCreate = document.getElementById('btnCreate');
+        let txtResult = document.getElementById('txtResult');
+  
+    
+
+       
+        
+
+        //-----------------------------------------------
+        async function listBlogPosts() {
+
+            let url = "/users";            
+
+            try {
+                let response = await fetch(url);
+                let data = await response.json();
+                
+                if (response.status != 200) {
+                    throw data.error;
+                }
+
+                container.innerHTML = ""; //delete previous content
+                
+                for (let value of data) {
+
+                    let date = new Date(value.date);
+
+                    let html = "<h2>" + value.heading + "</h2>";
+                    html += "<p>" + date.toLocaleDateString() + "</p>";
+                    html += "<p>" + value.blogtext + "</p><hr>";
+
+                    let div = document.createElement("div");
+                    div.innerHTML = html;
+                    container.appendChild(div);
+
+                    let delbtn = document.createElement("button");
+                    delbtn.innerHTML = "Delete";
+
+                    delbtn.addEventListener('click', function(evt) {
+                        deleteBlogPost(value.id);
+                    });
+
+                    div.insertBefore(delbtn, div.lastElementChild);
+                }
+            }
+            catch(error) {
+                console.log(error);
+            }
+        }
+
+        //-----------------------------------------------
+        async function deleteBlogPost(blogpostId) {
+
+            let url = "/users";
+
+            let updata = {
+                id: blogpostId
+            }
+
+            let cfg = {
+                method: "DELETE",
+                headers: {"content-type":"application/json"},
+                body: JSON.stringify(updata)
+            }           
+
+            try {                
+                let response = await fetch(url, cfg);               
+                let data = await response.json();
+                
+                if (response.status != 200) {
+                    throw data.error;
+                }
+                
+                listBlogPosts(); //refresh the list                
+            }
+            catch(error) {
+                console.log(error);
+                txtResult.innerHTML="something went wrong"
+            }  
+        }
+        
+        // start ----------------------------------------
+
+        //listBlogPosts();
+        function createCredentialString(username, password){
+            let combinedStr = username +":" + password;
+            let b64Str = btoa(combinedStr);
+            return "basic" + b64Str
+        }
+
+    </script>
+
+    <!---------------- CSS ------------------->
+    <style>        
+
+    </style>
+
+</body>
+
+</html>

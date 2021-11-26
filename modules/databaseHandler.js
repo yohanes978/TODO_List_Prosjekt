@@ -13,23 +13,41 @@ let dbMethods = {}; //create empty object
 
 //----------------------------------------
 
-dbMethods.getAllTodoLists = function(){
+dbMethods.getAllTodoLists = async function(){
     let sql = "SELECT * FROM todoliste";
     return pool.query(sql); //return the promise
-
+}
+dbMethods.getListItems = function(listID){
+    let sql = "SELECT * FROM chores WHERE listid = $1";
+    let values = [listID];
+    return pool.query(sql, values);
 }
 
 //--------------------------------------
-dbMethods.createTodoList = function(listName, listItems, userid) {
-    let sql = 'INSERT INTO todoliste (id, date, listname, listitems, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning*';
-	let values = [listName, listItems, userid];
+dbMethods.createTodoList = function(listName, userid) {
+    let sql = 'INSERT INTO todoliste (id, date, listname, userid) VALUES(DEFAULT, DEFAULT, $1, $2) returning*';
+	let values = [listName, userid];
     return pool.query(sql, values); //return the promise
 
+}
+dbMethods.createListItems = async function(userid, listName, listItem){
+    let selectListId = await pool.query("SELECT id FROM todoliste WHERE userid = $1 AND listname = $2", [userid, listName]);
+    let listID = selectListId.rows[selectListId.rows.length-1].id
+    let sql = 'INSERT INTO chores (listid, name, item, itemid) VALUES($1, $2, $3, DEFAULT)'
+    let values = [listID, listName, listItem];
+    return pool.query(sql, values);
 }
 
 //-------------------------------------
 dbMethods.deleteTodoList = function(id){
+    pool.query("DELETE FROM chores WHERE listid = $1", [id]);
     let sql = "DELETE FROM todoliste WHERE id = $1 RETURNING *";
+    let values = [id];
+    return pool.query(sql, values); //return the promise
+    
+}
+dbMethods.deleteTodoListItem = function(id){
+    let sql = "DELETE FROM chores WHERE itemid = $1 RETURNING *";
     let values = [id];
     return pool.query(sql, values); //return the promise
     

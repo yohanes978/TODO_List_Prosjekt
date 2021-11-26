@@ -7,14 +7,14 @@
   </head>
   <body>
     <!----------- HTML-elements -------------->
-    <h3 id= "title">Name your list</h3>
-    <input id="listName" type="text" /><br />
+    <h2 id= "title">Name your list</h2>
+    <input id="listName" type="text" class="listItem" /><br />
 
     <br>
     
     
-    <input id="listItem" type="text">
-    <button id="btnAddToList">add item</button>
+    <input id="listItem" type="text" class="listItem">
+    <button id="btnAddToList" class="btnAddToList">add item</button>
     <div id="container"></div>
    
     <br>
@@ -31,8 +31,8 @@
       let btnFinishList = document.getElementById("btnFinishList");
     
 
-      btnFinishList.addEventListener("click", async function (evt) {
-        let url = "/grayrubiousmagyarosaurus";
+      /*btnFinishList.addEventListener("click", async function (evt) {
+        let url = "/todo";
 
         let updata = {
           listName: listName.value,
@@ -58,20 +58,18 @@
           txtResult.innerHTML =
             "Something went wrong - check the console window";
         }
-      });
+      });*/
 
       btnAddToList.addEventListener("click", function(){
-        let listItem = document.createElement("div")
-        listItem.innerHTML = listItem.value;
-        let checkbox = document.createElement("input")
-        checkbox.setAttribute("type", "checkbox");
-        listItem.appendChild(checkbox);
+        let listItems = document.createElement("div")
+        listItems.innerHTML = listItem.value;
+        console.log(listItem.value)
 
-        container.appendChild(listItem)
+        container.appendChild(listItems)
 
       });
-      btnFinishTest.addEventListener("click", async function(){
-        let url = "/grayrubiousmagyarosaurus";
+      btnFinishList.addEventListener("click", async function(){
+        let url = "/todo";
         let items = {};
         let info = container.childNodes;
         let increment = 0;
@@ -80,7 +78,7 @@
           increment++
         })
         let updata = {
-          heading: testName.value,
+          listName: listName.value,
           listItems: JSON.stringify(items)
         };
         let cfg = {
@@ -96,11 +94,8 @@
           if (response.status != 200) {
             throw data.err;
           }
-          txtResult.innerHTML = data.msg;
         } catch (err) {
           console.log(err);
-          txtResult.innerHTML =
-            "Something went wrong - check the console window";
         }
       });
     </script>
@@ -113,7 +108,7 @@
       }
 
       #btnFinishList {
-        background-color: #0f0e0e;
+        background-color: blue;
         color: white;
         padding: 14px 25px;
         text-align: center;
@@ -123,6 +118,20 @@
       }
       #btnFinishList:hover {
         background-color: rgb(102, 101, 101);
+      }
+      .listItem {
+        margin: 10px;
+        width: 15%;
+        padding: 10px;
+      }
+      .btnAddToList{
+        background-color: blue;
+        color: #ffff;
+        display: inline-block;
+        box-sizing: border-box;
+        border-radius: 15px; 
+        width: 100px;
+        height: 40px;
       }
     </style>
   </body>

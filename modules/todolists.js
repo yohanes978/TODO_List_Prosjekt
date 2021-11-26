@@ -26,9 +26,7 @@ router.post("/grayrubiousmagyarosaurus", async function(req, res, next) {
 
 	try{
 		//let result = await pool.query(sql, values);
-		console.log(updata.listItems, updata.listName)
-		let data = await db.createTodoList(JSON.stringify(updata.listName), JSON.stringify(updata.listItems), userid.toString());
-		console.log(data)
+		let data = await db.createTodoList(updata.heading, updata.chores, userid);
 		if (data.rows.length > 0){
             console.log("test")
 			res.status(200).json({msg: "The todolist was created succesfully"}).end();
@@ -51,7 +49,7 @@ router.delete("/grayrubiousmagyarosaurus", async function(req, res, next) {
 
 	try{
 		//let result = await pool.query(sql, values);
-		let data = await db.deleteTodoList(updata.id);
+		//let data = await db.deleteTodoList(updata.id);
 
 		if(data.rows.length > 0){
 			res.status(200).json({msg: "The todolist was deleted successfully"}).end();

@@ -8,21 +8,17 @@
 <body>
 
     <script>
-         let container = document.getElementById('container');
+        let container = document.getElementById('container');
         let inpHeading = document.getElementById('inpHeading');
         let inpBlogtext = document.getElementById('inpBlogtext');
         let btnCreate = document.getElementById('btnCreate');
         let txtResult = document.getElementById('txtResult');
   
-    
-
-       
-        
 
         //-----------------------------------------------
         async function listBlogPosts() {
 
-            let url = "/users";            
+            let url = "/users.js";            
 
             try {
                 let response = await fetch(url);

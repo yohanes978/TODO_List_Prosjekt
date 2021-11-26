@@ -7,7 +7,7 @@
   </head>
   <body>
     <!----------- HTML-elements -------------->
-    <h2 id= "title">Name your list</h2>
+    <h2 id= "title" class="title">Name your list</h2>
     <input id="listName" type="text" class="listItem" /><br />
 
     <br>
@@ -125,6 +125,7 @@
         background-color: rgb(102, 101, 101);
       }
       .listItem {
+        justify-items: center;
         margin: 10px;
         width: 15%;
         padding: 10px;
@@ -138,6 +139,10 @@
         width: 100px;
         height: 40px;
       }
+      .title{
+        text-align: center;
+      }
+      
     </style>
   </body>
 </html>

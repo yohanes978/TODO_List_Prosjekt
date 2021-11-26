@@ -36,7 +36,8 @@
             }
             let div = document.createElement("div");
             let date = document.createElement("p");
-            date.innerHTML = new Date(value.date);
+            console.log(value.date)
+            date.innerHTML = new Date(value.date).toLocaleDateString();
             let listName = document.createElement("h2");
             listName.innerHTML = value.listname;
             div.appendChild(listName)

@@ -35,7 +35,7 @@
     background-color: rgb(102, 101, 101);
   }
 
-  #btnAdd {
+  #btnAddToList {
     background-color: #0f0e0e;
     color: white;
     padding: 14px 25px;
@@ -45,6 +45,12 @@
     border-radius: 15px;
   }
 
-  #btnAdd:hover {
+  #btnAddToList:hover {
     background-color: rgb(102, 101, 101);
+  }
+
+  .listItem{
+    margin: 10px;
+    width: 15%;
+    padding: 10px;
   }

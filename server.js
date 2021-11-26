@@ -20,7 +20,9 @@ server.set("port", PORT);
 // middleware ---------------------------
 server.use(express.static("public"));
 server.use(express.json());
-server.use(router)
+
+server.use(router);
+//server.use(users);
 
 // endpoints ----------------------------
 

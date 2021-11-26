@@ -39,6 +39,7 @@ router.post("/todo", async function(req, res, next) {
 
 	try{
 		//let result = await pool.query(sql, values);
+
 		console.log(updata.listItems, updata.listName)
 		let data = await db.createTodoList(JSON.stringify(updata.listName), userid.toString());
 		let items = []
@@ -92,7 +93,7 @@ router.delete("/todo", async function(req, res, next) {
 
 	try{
 		//let result = await pool.query(sql, values);
-		let data = await db.deleteTodoList(updata.id);
+		//let data = await db.deleteTodoList(updata.id);
 
 		if(data.rows.length > 0){
 			res.status(200).json({msg: "The todolist was deleted successfully"}).end();

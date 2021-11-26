@@ -46,12 +46,33 @@ dbMethods.deleteTodoList = function(id){
     return pool.query(sql, values); //return the promise
     
 }
+
+  //------her fra
+ dbMethods.getAllUsers = function(){
+     let sql = "select * username From users ";
+     return pool.query(sql);
+ }
+ //---------
+  dbMethods.getUser= function(username){
+      let sql = "select * From users WHERE username =$1";
+      let values =[username,password, salt];
+      return pool.query(sql,values);
+  } 
+  //------
+   dbMethods.deleteUser = function(id){
+       let sql ="DELETE  FROM users WHERE id = $1 RETURNING";
+       let values = [id];
+       return pool.query(sql, values);
+   }
+  //--- til hit---
+
 dbMethods.deleteTodoListItem = function(id){
     let sql = "DELETE FROM chores WHERE itemid = $1 RETURNING *";
     let values = [id];
     return pool.query(sql, values); //return the promise
     
 }
+
 
 // export dbMethods ---------------------
 module.exports = dbMethods;
